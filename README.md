@@ -1,6 +1,17 @@
 # FoodOrderApp
 Mobile app that allows you to order food from various options.
 
+## Technology Stack
+***Ionic***
+
+***Cordova***
+
+***NodeJS***
+
+***Express***
+
+***MongoDB***
+
 ## Pre-requisites
 ***Download and install NodeJS (v 10.15.3) and NPM (v 6.4.1)***
 
