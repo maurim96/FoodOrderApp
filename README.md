@@ -14,7 +14,7 @@ Mobile app that allows you to order food from various options.
 
 To run app on browser - ***ionic serve***
 
-To run app on browser and via DevApp that allows you see on mobile on live - ***ionic serve --devapp***
+To run app on browser and via DevApp that allows you to see on mobile too - ***ionic serve --devapp***
 
 To build app on Android with Cordova (output dir: ...\platforms\android\app\build\outputs\apk\debug) - ***ionic cordova build android***
 
