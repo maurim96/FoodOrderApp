@@ -1,10 +1,23 @@
-.welcome-card ion-img {
-  max-height: 35vh;
-  overflow: hidden;
-}
-.card-title {
+.order-title {
+  font-size: 17px;
   font-style: italic;
+}
+.edited-icon {
+  color: #3880ff;
+  width: 40px;
+  height: 40px;
+}
+.edited-thumbnail {
+  width: 40px;
+  height: 40px;
+  margin-left: 3%;
+  margin-right: 7%;
 }
 .alert-message {
   text-align: center;
+  margin-top: 2%;
+  font-size: 15px;
+}
+.text-no-elipsis {
+  white-space: normal;
 }

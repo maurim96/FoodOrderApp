@@ -17,33 +17,33 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'tab2',
+        path: 'make-order',
         children: [
           {
             path: '',
-            loadChildren: '../tab2/tab2.module#Tab2PageModule'
+            loadChildren: '../make-order/make-order.module#MakeOrderPageModule'
           }
         ]
       },
       {
-        path: 'tab3',
+        path: 'home',
         children: [
           {
             path: '',
-            loadChildren: '../tab3/tab3.module#Tab3PageModule'
+            loadChildren: '../home/home.module#HomePageModule'
           }
         ]
       },
       {
         path: '',
-        redirectTo: '/tabs/my-order',
+        redirectTo: '/tabs/home',
         pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/tabs/my-order',
+    redirectTo: '/tabs/home',
     pathMatch: 'full'
   }
 ];

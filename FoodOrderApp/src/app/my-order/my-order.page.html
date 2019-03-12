@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header translucent="true" type="ios">
   <ion-toolbar>
     <ion-title>
       Mi Pedido
@@ -7,34 +7,64 @@
 </ion-header>
 
 <ion-content>
-  <ion-card class="welcome-card">
-    <ion-img src="/assets/img/banner.jpg"></ion-img>
-    <ion-card-header>
-      <ion-card-subtitle class="card-title">Solicite su almuerzo de manera fácil y rápida</ion-card-subtitle>
-      <ion-card-title class="card-title">Aplicación de Almuerzos</ion-card-title>
-    </ion-card-header>
-  </ion-card>
-  <ion-list lines="none" *ngIf="ordered">
-    <ion-list-header>
-      <ion-label>Su Pedido</ion-label>
+  <ion-list mode="ios" lines="full">
+    <ion-list-header type="ios" color="primary">
+      <ion-label>
+        <h2>Detalles del pedido</h2>
+      </ion-label>
     </ion-list-header>
-    <ion-item href="https://ionicframework.com/docs/building/scaffolding">
-      <ion-icon slot="start" color="medium" name="build"></ion-icon>
-      <ion-label>Scaffold Out Your App</ion-label>
+    <ion-item *ngIf="!ordered">
+      <ion-note color="danger" class="alert-message">
+        Aún no realizó su pedido, recuerde que tiene tiempo hasta las 11:00hs.
+      </ion-note>
     </ion-item>
-    <ion-item href="https://ionicframework.com/docs/layout/structure">
-      <ion-icon slot="start" color="medium" name="grid"></ion-icon>
-      <ion-label>Change Your App Layout</ion-label>
+    <ion-item *ngIf="ordered">
+      <ion-thumbnail slot="start" class="edited-thumbnail">
+        <ion-icon class="edited-icon" name="pin"></ion-icon>
+      </ion-thumbnail>
+      <ion-label>
+        <h3>Ubicación</h3>
+        <p class="text-no-elipsis">Oficina del centro</p>
+      </ion-label>
     </ion-item>
-    <ion-item href="https://ionicframework.com/docs/theming/basics">
-      <ion-icon slot="start" color="medium" name="color-fill"></ion-icon>
-      <ion-label>Theme Your App</ion-label>
+    <ion-item *ngIf="ordered">
+      <ion-thumbnail slot="start" class="edited-thumbnail">
+        <ion-icon class="edited-icon" name="time"></ion-icon>
+      </ion-thumbnail>
+      <ion-label>
+        <h3>Turno</h3>
+        <p class="text-no-elipsis">Primer turno</p>
+      </ion-label>
     </ion-item>
-  </ion-list>
-  <ion-list lines="none" *ngIf="!ordered">
-    <ion-list-header>
-      <ion-note color="danger" class="alert-message">Aún no realizó su pedido, recuerde que tiene tiempo hasta las
-        11:00hs.</ion-note>
-    </ion-list-header>
+    <ion-item *ngIf="ordered">
+      <ion-thumbnail slot="start">
+        <img src="/assets/img/tarta.jpg">
+      </ion-thumbnail>
+      <ion-label>
+        <h3>Plato principal</h3>
+        <p class="text-no-elipsis">Tarta de Jamón y Queso</p>
+      </ion-label>
+    </ion-item>
+    <ion-item *ngIf="ordered">
+      <ion-thumbnail slot="start">
+        <img src="/assets/img/ensalada.jpg">
+      </ion-thumbnail>
+      <ion-label>
+        <h3>Guarnición</h3>
+        <p class="text-no-elipsis">Ensalada: Lechuga, Tomate, Zanahoria, Huevo y Choclo</p>
+      </ion-label>
+    </ion-item>
+    <ion-item *ngIf="ordered">
+      <ion-label>
+        <h3>Observaciones</h3>
+        <p class="text-no-elipsis">Agregar sobres de mayonesa y ketchup por favor. Sin pan.</p>
+      </ion-label>
+    </ion-item>
   </ion-list>
 </ion-content>
+
+<ion-footer class="footer">
+  <p>
+    Copyright © 2019 MS Technologies SA. Todos los derechos reservados.
+  </p>
+</ion-footer>

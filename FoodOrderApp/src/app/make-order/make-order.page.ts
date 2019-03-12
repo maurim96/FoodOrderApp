@@ -2,13 +2,11 @@ import { Component } from '@angular/core';
 import { UtilitiesService } from '../utilities.service';
 
 @Component({
-  selector: 'app-my-order',
-  templateUrl: 'my-order.page.html',
-  styleUrls: ['my-order.page.scss']
+  selector: 'app-make-order',
+  templateUrl: 'make-order.page.html',
+  styleUrls: ['make-order.page.scss']
 })
-export class MyOrderPage {
-  ordered = true;
-
+export class MakeOrderPage {
   constructor(
     public utilitiesService: UtilitiesService) { }
 
