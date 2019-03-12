@@ -2,24 +2,27 @@
 Mobile app that allows you to order food from various options.
 
 ## Technology Stack
-***Ionic***
+***Ionic v4.11.0***
 
-***Cordova***
+***Cordova v8.1.2***
 
-***NodeJS***
+***NodeJS v10.15.3***
 
-***Express***
+***Express v4.16.0***
 
-***MongoDB***
+***MongoDB v4.0.6***
 
 ## Pre-requisites
-***Download and install NodeJS (v 10.15.3) and NPM (v 6.4.1)***
 
 ***npm install -g ionic (v 4.11.0)***
 
 ***npm install -g cordova (v 8.1.2)***
 
-***Download and Install on your mobile Ionic DevApp from playstore***
+***Download and Install on your mobile Ionic DevApp from playstore (for live debug at mobile)***
+
+***Download and install NodeJS (v 10.15.3) and NPM (v 6.4.1)***
+
+***Download and Install MongoDB (v4.0.6)***
 
 ## Usefull commands
 
