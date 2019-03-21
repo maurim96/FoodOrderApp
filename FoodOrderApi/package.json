@@ -1,0 +1,25 @@
+{
+  "name": "nodejs-scaffolding",
+  "version": "1.0.0",
+  "description": "a basic nodejs scaffolding",
+  "main": "server.js",
+  "scripts": {
+    "debug": "nodemon --inspect-brk server.js",
+    "start": "nodemon server.js",
+    "test": "mocha \"app/tests/**/*.spec.js\""
+  },
+  "author": "lemon8",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "method-override": "^3.0.0",
+    "mongoose": "^5.4.19"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.0.2",
+    "nodemon": "^1.18.10"
+  }
+}
