@@ -15,9 +15,13 @@ app.use(bodyParser.json());
 app.use(methodOverride());
 
 //models
-require('./app/models/menu.js');
-require('./app/models/menuType.js');
+require('./app/models/garnish.js');
 require('./app/models/ingredients.js');
+require('./app/models/location.js');
+require('./app/models/menu.js');
+require('./app/models/order.js');
+require('./app/models/turn.js');
+require('./app/models/user.js');
 
 //routes
 app.use(require('./app/routes'));

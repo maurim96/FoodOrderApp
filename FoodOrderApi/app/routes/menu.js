@@ -4,7 +4,7 @@ var router = require('express').Router();
 
 //Get all Menues
 router.get('/', (req, res, next) => {
-  Menu.find({}).populate('menuType')
+  Menu.find({})
     .then(result => {
       if (result) {
         res.status(200).json(result);
@@ -36,8 +36,12 @@ router.get('/:id', (req, res, next) => {
 router.post('/', (req, res) => {
   const menu = new Menu({
     name: req.body.name,
-    isSecondary: req.body.isSecondary,
-    menuType: req.body.menuTypes
+    img: req.body.img,
+    type: req.body.type,
+    sauce: req.body.sauce,
+    active: req.body.active,
+    isSalad: req.body.isSalad,
+    hasGarnish: req.body.hasGarnish
   });
   menu.save((err) => {
     if (err) {

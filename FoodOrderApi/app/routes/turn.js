@@ -1,15 +1,15 @@
 var mongoose = require('mongoose');
-var Ingredients = mongoose.model('ingredients');
+var Turn = mongoose.model('turn');
 var router = require('express').Router();
 
-//Get all Ingredients
+//Get all Turns
 router.get('/', (req, res, next) => {
-  Ingredients.find({})
+  Turn.find({})
     .then(result => {
       if (result) {
         res.status(200).json(result);
       }
-      res.send("No Ingredients was found!");
+      res.send("No Turn was found!");
     }, err => {
       if (err) {
         res.status(500).send(err);
@@ -17,9 +17,9 @@ router.get('/', (req, res, next) => {
     });
 });
 
-//Get one Ingredient by id
+//Get one Turn by id
 router.get('/:id', (req, res, next) => {
-  Ingredients.findOne({ _id: req.params.id }, function (err, result) {
+  Turn.findOne({ _id: req.params.id }, function (err, result) {
     if (err) {
       res.status(500).send(err);
     }
@@ -27,31 +27,30 @@ router.get('/:id', (req, res, next) => {
       res.json(result);
     }
     else {
-      res.send("No Ingredients was found with this id!");
+      res.send("No Turn was found with this id!");
     }
   });
 });
 
-//Create Ingredients
+//Create Turn
 router.post('/', (req, res) => {
-  const ingredient = new Ingredients({
+  const turn = new Turn({
     name: req.body.name,
-    active: req.body.active,
-    isSpecial: req.body.isSpecial
+    active: req.body.active
   });
-  ingredient.save((err) => {
+  turn.save((err) => {
     if (err) {
       res.status(500).send(err);
     }
     else {
-      res.send(ingredient);
+      res.send(turn);
     }
   });
 });
 
-//Update Ingredients
+//Update Turn
 router.put('/:id', async (req, res) => {
-  Ingredients.findOneAndUpdate({ _id: req.params.id }, req.body).then(eee => {
+  Turn.findOneAndUpdate({ _id: req.params.id }, req.body).then(eee => {
     if (err) {
       res.status(500).send(err);
     } else {

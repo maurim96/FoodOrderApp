@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { UtilitiesService } from '../utilities.service';
+import { OrderService } from '../services/order.service';
 
 @Component({
   selector: 'app-my-order',
@@ -8,12 +9,16 @@ import { UtilitiesService } from '../utilities.service';
 })
 export class MyOrderPage {
   ordered = true;
+  order: any;  
 
   constructor(
-    public utilitiesService: UtilitiesService) { }
+    private utilitiesService: UtilitiesService,
+    private _orderService: OrderService) { }
 
-  // tslint:disable-next-line:use-life-cycle-interface
   ngOnInit() {
-    this.utilitiesService.presentLoadingWithOptions();
+    this.utilitiesService.presentLoadingWithOptions();    
+    this._orderService.order$.subscribe(res => {
+      this.order = res;
+    })
   }
 }

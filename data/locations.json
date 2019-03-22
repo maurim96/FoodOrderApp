@@ -1,0 +1,3 @@
+{"_id":{"$oid":"5c94ebb4ed24d09d9d4aefc6"},"name":"Oficina MS Tech","active":true,"__v":{"$numberInt":"0"}}
+{"_id":{"$oid":"5c94ebbaed24d09d9d4aefc7"},"name":"Oficina San Cristobal","active":true,"__v":{"$numberInt":"0"}}
+{"_id":{"$oid":"5c94ebc0ed24d09d9d4aefc8"},"name":"Oficina Caja Mutual","active":true,"__v":{"$numberInt":"0"}}

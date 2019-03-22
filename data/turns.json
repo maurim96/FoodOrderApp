@@ -1,0 +1,2 @@
+{"_id":{"$oid":"5c94eb96ed24d09d9d4aefc4"},"name":"Primer turno","active":true,"__v":{"$numberInt":"0"}}
+{"_id":{"$oid":"5c94eb9aed24d09d9d4aefc5"},"name":"Segundo turno","active":true,"__v":{"$numberInt":"0"}}

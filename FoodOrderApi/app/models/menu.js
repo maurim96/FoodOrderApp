@@ -1,10 +1,19 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
 const menuSchema = new mongoose.Schema({
     name: { type: String, required: true },
-    isSecondary: { type: Boolean, required: true },
-    menuType: [{ type: mongoose.Schema.Types.ObjectId, ref: 'menuType', required: false }],
-    hasSecondary: { type: Boolean, required: true, default: true}
+    img: { type: String, required: true },
+    active: { type: Boolean, required: true },    
+    type: [{
+        name: { type: String},
+        active: { type: Boolean }
+    }],
+    sauce: [{
+        name: { type: String},
+        active: { type: Boolean }
+    }],
+    isSalad: { type: Boolean, required: true },
+    hasGarnish: { type: Boolean, required: true }
 });
 
 module.exports = mongoose.model('menu', menuSchema);

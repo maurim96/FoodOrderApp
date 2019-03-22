@@ -1,0 +1,5 @@
+{"_id":{"$oid":"5c94eda1ed24d09d9d4aefc9"},"name":"Ensalada","img":"/assets/img/ensalada.jpg","active":true,"isSalad":true,"__v":{"$numberInt":"0"}}
+{"_id":{"$oid":"5c94edcaed24d09d9d4aefca"},"name":"Arroz","img":"/assets/img/arroz.jpg","active":true,"isSalad":false,"__v":{"$numberInt":"0"}}
+{"_id":{"$oid":"5c94eddded24d09d9d4aefcb"},"name":"Puré de papa","img":"/assets/img/pure_papa.jpg","active":true,"isSalad":false,"__v":{"$numberInt":"0"}}
+{"_id":{"$oid":"5c94edebed24d09d9d4aefcc"},"name":"Puré de calabaza","img":"/assets/img/pure_calabaza.jpg","active":true,"isSalad":false,"__v":{"$numberInt":"0"}}
+{"_id":{"$oid":"5c94edfbed24d09d9d4aefcd"},"name":"Puré mixto","img":"/assets/img/pure_mixto.jpg","active":true,"isSalad":false,"__v":{"$numberInt":"0"}}

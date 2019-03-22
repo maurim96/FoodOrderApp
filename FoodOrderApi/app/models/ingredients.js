@@ -1,8 +1,8 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
 const ingredientsSchema = new mongoose.Schema({    
     name: { type: String, required: true },
-    isSalad: { type: Boolean, required: true },
+    active: { type: Boolean, required: true },
     isSpecial: { type: Boolean, required: true }    
 });
 
