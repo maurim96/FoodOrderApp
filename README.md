@@ -32,6 +32,8 @@ To run app on browser and via DevApp that allows you to see on mobile too - ***i
 
 To build app on Android with Cordova (output dir: ...\platforms\android\app\build\outputs\apk\debug) - ***ionic cordova build android***
 
+To run cordova plugins on browser - ***ionic cordova run browser***
+
 ## Documentation
 ***https://ionicframework.com/docs/installation/cli***
 
