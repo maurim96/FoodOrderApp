@@ -9,7 +9,7 @@ router.get('/', (req, res, next) => {
       if (result) {
         res.status(200).json(result);
       }
-      res.send("No Menu was found!");
+      res.json({msg: 'No Menu was found'});      
     }, err => {
       if (err) {
         res.status(500).send(err);
@@ -27,7 +27,7 @@ router.get('/:id', (req, res, next) => {
       res.json(result);
     }
     else {
-      res.send("No Menu was found with this id!");
+      res.json({msg: 'No Menu was found with this id'});
     }
   });
 });
@@ -48,7 +48,7 @@ router.post('/', (req, res) => {
       res.status(500).send(err);
     }
     else {
-      res.send(menu);
+      res.status(201).json(menu);      
     }
   });
 });

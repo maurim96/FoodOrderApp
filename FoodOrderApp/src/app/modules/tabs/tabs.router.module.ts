@@ -12,7 +12,7 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: '../my-order/my-order.module#MyOrderPageModule'
+            loadChildren: './my-order/my-order.module#MyOrderPageModule'
           }
         ]
       },
@@ -21,7 +21,7 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: '../make-order/make-order.module#MakeOrderPageModule'
+            loadChildren: './make-order/make-order.module#MakeOrderPageModule'
           }
         ]
       },
@@ -30,7 +30,7 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: '../home/home.module#HomePageModule'
+            loadChildren: './home/home.module#HomePageModule'
           }
         ]
       },

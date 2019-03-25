@@ -1,4 +1,3 @@
-import { RouteGuard } from './services/route.guard';
 import { LoginService } from './services/login.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -20,7 +19,8 @@ import { NativeStorage } from '@ionic-native/native-storage/ngx';
     BrowserModule, 
     IonicModule.forRoot(), 
     AppRoutingModule, 
-    HttpClientModule],
+    HttpClientModule
+  ],
   providers: [    
     StatusBar,
     SplashScreen,

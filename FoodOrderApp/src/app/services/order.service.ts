@@ -21,5 +21,9 @@ export class OrderService {
   setOrderClient(order) {
     this.order.next(order);
   }
+
+  getAllMenus() : Observable<any> {
+    return this._httpClient.get(Constants.apiRoot + 'menu');
+  }
   
 }

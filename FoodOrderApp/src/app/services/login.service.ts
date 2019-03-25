@@ -29,27 +29,30 @@ export class LoginService {
 
   logout() {
     this.user = null;
+    this._nativeStorage.setItem('user', { value: '' })
+      .then(
+        () => {
+          console.log('User logged out')
+          // this._router.navigateByUrl('login');
+        },
+        error => console.error('Error storing item', error)
+      );
     this._router.navigateByUrl('login');
-    // this._nativeStorage.setItem('user', { value: '' })
-    //   .then(
-    //     () => {
-    //       console.log('User logged out')
-    //       this._router.navigateByUrl('login');
-    //     },
-    //     error => console.error('Error storing item', error)
-    //   );
   }
 
   logUser(user: any) {
     this.user = user;
-    // this._nativeStorage.setItem('user', { value: this.user })
-    //   .then(
-    //     () => {
-    //       console.log('Stored item!');
-    //       this._router.navigateByUrl('app/tabs/home')
-    //     },
-    //     error => console.error('Error storing item', error)
-    //   );
+
+    this._nativeStorage.setItem('user', { value: this.user })
+      .then(
+        () => {
+          console.log('Stored item!');
+          // this._router.navigateByUrl('app/tabs/home')
+        },
+        error => console.error('Error storing item', error)
+      );
+
+    this._router.navigateByUrl('app/tabs/home')
   }
 
   getUserId() {
@@ -57,22 +60,22 @@ export class LoginService {
   }
 
   isLoggedIn() {
-    if(this.user != null) {
+    if (this.user != null) {
       return true;
     }
+    this._nativeStorage.getItem('user')
+      .then(
+        data => {
+          this.user = data;
+          return true;
+        },
+        error => {
+          console.error(error)
+          return false;
+        }
+      );
     return false;
-    // this._nativeStorage.getItem('user')
-    //   .then(
-    //     data => {
-    //       console.log(data);
-    //       return true;
-    //     },
-    //     error => {
-    //       console.error(error)
-    //       return false;
-    //     }
-    //   );
-    //   return false;
+
   }
 
 }

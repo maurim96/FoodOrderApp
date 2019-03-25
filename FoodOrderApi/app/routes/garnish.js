@@ -9,7 +9,7 @@ router.get('/', (req, res, next) => {
             if (result) {
                 res.status(200).json(result);
             }
-            res.send("No Garnish was found!");
+            res.json({msg: 'No Garnish was found'});            
         }, err => {
             if (err) {
                 res.status(500).send(err);
@@ -27,7 +27,7 @@ router.get('/:id', (req, res, next) => {
             res.json(result);
         }
         else {
-            res.send("No Garnish was found with this id!");
+            res.json({msg: 'No Garnish was found'});
         }
     });
 });
@@ -45,7 +45,7 @@ router.post('/', (req, res) => {
             res.status(500).send(err);
         }
         else {
-            res.send(garnish);
+            res.status(201).json(garnish);
         }
     });
 });

@@ -1,4 +1,4 @@
-import { LoginService } from './../services/login.service';
+// import { LoginService } from './../../services/login.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -9,10 +9,10 @@ import { Component } from '@angular/core';
 export class TabsPage {
   
   constructor(      
-      private _loginService: LoginService
+      // private _loginService: LoginService
   ) {}
 
-  logout() {
-    this._loginService.logout();    
-  }
+  // logout() {
+  //   this._loginService.logout();    
+  // }
 }

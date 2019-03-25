@@ -9,7 +9,7 @@ router.get('/', (req, res, next) => {
       if (result) {
         res.status(200).json(result);
       }
-      res.send("No User was found");
+      res.json({msg: 'No User was found'});
     }, err => {
       if (err) {
         res.status(500).send(err);
@@ -28,7 +28,7 @@ router.post('/login', (req, res) => {
       res.status(500).send(err);
     }
     if (result) {
-      res.json(result);
+      res.status(200).json(result);
     }
     else {      
       res.status(500).send({ 
@@ -48,7 +48,7 @@ router.get('/:id', (req, res, next) => {
       res.json(result);
     }
     else {
-      res.send("No User was found with this id");
+      res.json({msg: 'No User was found with this id'});
     }
   });
 });
@@ -67,7 +67,7 @@ router.post('/', (req, res) => {
       res.status(500).send(err);
     }
     else {
-      res.send(user);
+      res.status(201).json(user);
     }
   });
 });
@@ -77,8 +77,7 @@ router.put('/:id', async (req, res) => {
   User.findOneAndUpdate({ _id: req.params.id }, req.body).then(eee => {
     if (err) {
       res.status(500).send(err);
-    } else {
-      console.log(eee);
+    } else {      
       res.send(eee);
     }
   });

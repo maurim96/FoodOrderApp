@@ -3,8 +3,14 @@
     <ion-title>
       Principal
     </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="logout()">
+        <ion-icon color="danger" slot="icon-only" name="log-out"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
+
 <ion-content>
   <ion-grid style="height: 100%">
     <ion-row style="height: 100%" justify-content-center>
@@ -20,7 +26,6 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-
 </ion-content>
 
 <ion-footer class="footer">

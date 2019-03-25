@@ -1,0 +1,34 @@
+<ion-header type="ios">
+  <ion-toolbar>
+    <ion-title>
+      Realizar Pedido
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="logout()">
+        <ion-icon color="danger" slot="icon-only" name="log-out"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <form>
+    <ion-list mode="ios" lines="full">
+      <!-- <ion-list-header type="ios" color="primary">
+        <ion-label class="title-form"><h2>Detalles del pedido</h2></ion-label>
+      </ion-list-header> -->
+      <ion-item>
+        <ion-title><strong>Menu:</strong></ion-title>
+        <ion-select interface="popover" class="select">
+          <ion-select-option *ngFor="let menu of menus" value="{{menu._id}}">{{menu.name}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+  </form>
+</ion-content>
+
+<ion-footer class="footer">
+  <p>
+    Copyright © 2019 MS Technologies SA. Todos los derechos reservados.
+  </p>
+</ion-footer>

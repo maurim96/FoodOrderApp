@@ -9,7 +9,7 @@ router.get('/', (req, res, next) => {
             if (result) {
                 res.status(200).json(result);
             }
-            res.send("No Order was found!");
+            res.json({msg: 'No order was found'});
         }, err => {
             if (err) {
                 res.status(500).send(err);
@@ -26,7 +26,7 @@ router.get('/:idUser', (req, res, next) => {
             if (result) {
                 res.status(200).json(result);
             }
-            res.send("No Order was found!");
+            res.json({msg: 'No order was found for that user'});
         }, err => {
             if (err) {
                 res.status(500).send(err);
@@ -51,7 +51,7 @@ router.post('/', (req, res) => {
             res.status(500).send(err);
         }
         else {
-            res.send(order);
+            res.status(201).json(order);
         }
     });
 });

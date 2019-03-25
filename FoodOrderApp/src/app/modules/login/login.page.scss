@@ -1,0 +1,19 @@
+ion-content {
+    --background: #fff url('../../../assets/img/background.jpg') no-repeat center center / cover;
+}
+ion-item {
+    --background: rgba(0,0,0,0);
+    --border-bottom: 5px solid #1b1b1b;
+    color: #2b2a2a;
+}
+ion-button {
+    --background: #363636;
+}
+ion-col {
+    background-color: rgba(255, 255, 255, 0.8705882352941177);
+    border-radius: 25px;
+}
+.title-form {
+    text-align: center;
+    color: rgba(0, 0, 0, 0.75);
+}

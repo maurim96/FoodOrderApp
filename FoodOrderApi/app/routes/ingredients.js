@@ -9,7 +9,7 @@ router.get('/', (req, res, next) => {
       if (result) {
         res.status(200).json(result);
       }
-      res.send("No Ingredients was found!");
+      res.json({msg: 'No Ingredients was found'});      
     }, err => {
       if (err) {
         res.status(500).send(err);
@@ -27,7 +27,7 @@ router.get('/:id', (req, res, next) => {
       res.json(result);
     }
     else {
-      res.send("No Ingredients was found with this id!");
+      res.json({msg: 'No Ingredients was found with this id'});
     }
   });
 });
@@ -44,7 +44,7 @@ router.post('/', (req, res) => {
       res.status(500).send(err);
     }
     else {
-      res.send(ingredient);
+      res.status(201).json(ingredient);      
     }
   });
 });
