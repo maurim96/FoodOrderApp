@@ -3,8 +3,8 @@ var Menu = mongoose.model('menu');
 var router = require('express').Router();
 
 //Get all Menues
-router.get('/', (req, res, next) => {
-  Menu.find({})
+router.get('/', (req, res, next) => {  
+  Menu.find({}).sort({ name: 1 })
     .then(result => {
       if (result) {
         res.status(200).json(result);

@@ -26,4 +26,19 @@ export class OrderService {
     return this._httpClient.get(Constants.apiRoot + 'menu');
   }
   
+  getAllLocations() : Observable<any> {
+    return this._httpClient.get(Constants.apiRoot + 'location');
+  }
+
+  getAllTurns() : Observable<any> {
+    return this._httpClient.get(Constants.apiRoot + 'turn');
+  }
+
+  getAllGarnishes() : Observable<any> {
+    return this._httpClient.get(Constants.apiRoot + 'garnish');
+  }
+  
+  getAllIngredients() : Observable<any> {
+    return this._httpClient.get(Constants.apiRoot + 'ingredients');
+  }
 }
