@@ -1,3 +1,10 @@
 .button-tab-edited {
     color: #f04141;
 }
+ion-tab-button {
+    background-color: var(--back-color);
+    // color: rgba(0,0,0,0.7)
+}
+.tab-selected {
+    // color: var(--principal-color);
+}

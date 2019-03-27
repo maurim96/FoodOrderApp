@@ -3,64 +3,116 @@
     <ion-title>
       Realizar Pedido
     </ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="logout()">
-        <ion-icon color="danger" slot="icon-only" name="log-out"></ion-icon>
-      </ion-button>
-    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content >
+<ion-content>
+  <div class="div-animated" *ngIf="checkStep(1)">
+    <ion-list mode="ios" lines="none">
+      <ion-list-header>
+        <ion-title class="title-list">Menús disponibles</ion-title>
+      </ion-list-header>
+      <ion-item *ngFor="let menu of menus" (click)="menuChanged(menu._id)">
+        <ion-avatar slot="start">
+          <img [src]="menu.img" />
+        </ion-avatar>
+        <ion-label>{{menu.name}}</ion-label>
+        <ion-icon name="arrow-dropright"></ion-icon>
+      </ion-item>
+    </ion-list>
+  </div>
 
-  <ion-slides pager="false" [options]="{allowTouchMove: false }" #slides>
+  <div class="div-animated" *ngIf="checkStep(2)">
+    <ion-img [src]="selectedMenu?.img"></ion-img>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" padding>
+          <ion-title mode="ios" *ngIf="selectedMenu?.isSalad">Ingredientes</ion-title>
+        </ion-col>
+        <ion-col size="12" padding>
+          <ion-slides mode="ios" *ngIf="selectedMenu?.isSalad" [options]="{slidesPerView: 2}">
+            <ion-slide *ngFor="let ingredient of ingredients" class="edited-slide">
+              <ion-chip>
+                <ion-avatar>
+                  <img src="/assets/img/lechuga.jpg">
+                </ion-avatar>
+                <ion-label>{{ingredient.name}}</ion-label>
+              </ion-chip>
+            </ion-slide>
+          </ion-slides>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <form [formGroup]="formMenu" *ngIf="!selectedMenu?.isSalad">
+      <ion-list mode="ios" lines="full">
+        <!-- <ion-item *ngIf="selectedMenu?.isSalad">
+          <ion-title><strong>Ingredientes:</strong></ion-title>
+          <ion-select multiple="true" class="select" formControlName="ingredient" (ionChange)="ingredientsChanged()">
+            <ion-select-option *ngFor="let ingredient of ingredients" value="{{ingredient._id}}">{{ingredient.name}}
+            </ion-select-option>
+          </ion-select>
+        </ion-item> -->
 
-    <ion-slide mode="ios">
-      <ion-list mode="ios">
-        <ion-item *ngFor="let menu of menus" (click)="menuChanged(menu._id)">
-          <ion-thumbnail slot="start">
-            <ion-img [src]="menu.img"></ion-img>
-          </ion-thumbnail>
-          <ion-label>{{menu.name}}</ion-label>
-          <ion-icon name="arrow-dropright"></ion-icon>
+        <!-- <ion-slide>
+            <ion-chip>
+              <ion-avatar>
+                <img src="/assets/img/arroz.jpg">
+              </ion-avatar>
+              <ion-label>Arroz</ion-label>
+              <ion-icon name="close-circle"></ion-icon>
+            </ion-chip>
+          </ion-slide>
+          <ion-slide>
+            <ion-chip>
+              <ion-avatar>
+                <img src="/assets/img/choclo.jpg">
+              </ion-avatar>
+              <ion-label>Choclo</ion-label>
+              <ion-icon name="close-circle"></ion-icon>
+            </ion-chip>
+          </ion-slide> -->
+        <ion-item *ngIf="selectedMenu?.type?.length > 0">
+          <ion-title><strong>Tipo:</strong></ion-title>
+          <ion-select interface="popover" class="select" formControlName="type" (ionChange)="typeChanged()">
+            <ion-select-option *ngFor="let type of selectedMenu.type" value="{{type._id}}">{{type.name}}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item *ngIf="selectedMenu?.hasGarnish">
+          <ion-title><strong>Guarnición:</strong></ion-title>
+          <ion-select interface="popover" class="select" formControlName="garnish" (ionChange)="garnishChanged()">
+            <ion-select-option *ngFor="let garnish of garnishes" value="{{garnish._id}}">{{garnish.name}}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item *ngIf="selectedMenu?.sauce?.length > 0">
+          <ion-title><strong>Salsa:</strong></ion-title>
+          <ion-select interface="popover" class="select" formControlName="sauce" (ionChange)="sauceChanged()">
+            <ion-select-option *ngFor="let sauce of selectedMenu?.sauce" value="{{sauce._id}}">{{sauce.name}}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item *ngIf="selectedGarnish?.isSalad">
+          <ion-title><strong>Ingredientes:</strong></ion-title>
+          <ion-select multiple="true" class="select" formControlName="ingredient"
+            (ionChange)="garnishIngredientsChanged()">
+            <ion-select-option *ngFor="let ingredient of ingredients" value="{{ingredient._id}}">{{ingredient.name}}
+            </ion-select-option>
+          </ion-select>
         </ion-item>
       </ion-list>
-    </ion-slide>
+    </form>
+    <div class="buttons-container">
+      <ion-button (click)="prev()" class="button-left" mode="ios">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+      <ion-button (click)="next()" class="button-right" mode="ios" [disabled]="!formMenu.valid">
+        <ion-icon slot="icon-only" name="arrow-forward"></ion-icon>
+      </ion-button>
+    </div>
+  </div>
 
-    <ion-slide mode="ios" class="second-slide">
-      <!-- <div style="height: 100%"> -->
-        <ion-card mode="ios">
-          <ion-card-header class="no-padding">
-            <ion-img src="{{selectedMenu?.img}}"></ion-img>
-          </ion-card-header>
-          <ion-card-content>
-              <form [formGroup]="formMenu">
-                  <ion-list mode="ios" lines="full">
-                    <!-- <ion-item>
-                      <ion-title><strong>Menu:</strong></ion-title>
-                      <ion-select interface="popover" class="select" formControlName="menu" (ionChange)="menuChanged()">
-                        <ion-select-option *ngFor="let menu of menus" value="{{menu._id}}">{{menu.name}}</ion-select-option>
-                      </ion-select>
-                    </ion-item> -->
-                    <ion-item *ngIf="selectedMenu?.type?.length > 0">
-                      <ion-title><strong>Tipo:</strong></ion-title>
-                      <ion-select interface="popover" class="select" formControlName="type">
-                        <ion-select-option *ngFor="let type of selectedMenu.type" value="{{type._id}}">{{type.name}}</ion-select-option>
-                      </ion-select>
-                    </ion-item>
-                    <ion-item *ngIf="selectedMenu?.hasGarnish">
-                      <ion-title><strong>Guarnición:</strong></ion-title>
-                      <ion-select interface="popover" class="select" formControlName="garnish" (ionChange)="garnishChanged()">
-                        <ion-select-option *ngFor="let garnish of garnishes" value="{{garnish._id}}">{{garnish.name}}</ion-select-option>
-                      </ion-select>
-                    </ion-item>
-                    <ion-item *ngIf="selectedGarnish?.isSalad">
-                      <ion-title><strong>Ingredientes:</strong></ion-title>
-                      <ion-select multiple="true" class="select" formControlName="ingredient" (ionChange)="garnishIngredientsChanged()">
-                        <ion-select-option *ngFor="let ingredient of ingredients" value="{{ingredient._id}}">{{ingredient.name}}</ion-select-option>
-                      </ion-select>
-                    </ion-item>
-                    <!-- <ion-item>
+  <!-- <ion-item>
                       <ion-title><strong>Ubicación:</strong></ion-title>
                       <ion-select interface="popover" class="select" formControlName="location">
                         <ion-select-option *ngFor="let location of locations" value="{{location._id}}">{{location.name}}</ion-select-option>
@@ -72,81 +124,4 @@
                         <ion-select-option *ngFor="let turn of turns" value="{{turn._id}}">{{turn.name}}</ion-select-option>
                       </ion-select>
                     </ion-item> -->
-                  </ion-list>
-                </form>
-          </ion-card-content>
-        </ion-card>
-      <!-- </div> -->
-
-      <div class="buttons-container">
-        <ion-button (click)="prev()" class="button-left" mode="ios">
-          <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
-        </ion-button>
-
-
-        <ion-button (click)="next()" class="button-right" mode="ios">
-          <ion-icon slot="icon-only" name="arrow-forward"></ion-icon>
-        </ion-button>
-      </div>
-      <!-- <ion-buttons slot="start">
-        <ion-button (click)="prev()">
-          <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
-        </ion-button>
-      </ion-buttons>
-      <ion-buttons slot="end">
-        <ion-button (click)="next()">
-          <ion-icon slot="icon-only" name="arrow-forward"></ion-icon>
-        </ion-button>
-      </ion-buttons> -->
-    </ion-slide>
-
-  </ion-slides>
-
-
-  <!-- <form [formGroup]="formMenu">
-    <ion-list mode="ios" lines="full">
-      <ion-item>
-        <ion-title><strong>Menu:</strong></ion-title>
-        <ion-select interface="popover" class="select" formControlName="menu" (ionChange)="menuChanged()">
-          <ion-select-option *ngFor="let menu of menus" value="{{menu._id}}">{{menu.name}}</ion-select-option>
-        </ion-select>
-      </ion-item>
-      <ion-item *ngIf="selectedMenu?.type?.length > 0">
-        <ion-title><strong>Tipo:</strong></ion-title>
-        <ion-select interface="popover" class="select" formControlName="type">
-          <ion-select-option *ngFor="let type of selectedMenu.type" value="{{type._id}}">{{type.name}}</ion-select-option>
-        </ion-select>
-      </ion-item>
-      <ion-item *ngIf="selectedMenu?.hasGarnish">
-        <ion-title><strong>Guarnición:</strong></ion-title>
-        <ion-select interface="popover" class="select" formControlName="garnish" (ionChange)="garnishChanged()">
-          <ion-select-option *ngFor="let garnish of garnishes" value="{{garnish._id}}">{{garnish.name}}</ion-select-option>
-        </ion-select>
-      </ion-item>
-      <ion-item *ngIf="selectedGarnish?.isSalad">
-        <ion-title><strong>Ingredientes:</strong></ion-title>
-        <ion-select multiple="true" class="select" formControlName="ingredient" (ionChange)="garnishIngredientsChanged()">
-          <ion-select-option *ngFor="let ingredient of ingredients" value="{{ingredient._id}}">{{ingredient.name}}</ion-select-option>
-        </ion-select>
-      </ion-item>
-      <ion-item>
-        <ion-title><strong>Ubicación:</strong></ion-title>
-        <ion-select interface="popover" class="select" formControlName="location">
-          <ion-select-option *ngFor="let location of locations" value="{{location._id}}">{{location.name}}</ion-select-option>
-        </ion-select>
-      </ion-item>
-      <ion-item>
-        <ion-title><strong>Turno:</strong></ion-title>
-        <ion-select interface="popover" class="select" formControlName="turn">
-          <ion-select-option *ngFor="let turn of turns" value="{{turn._id}}">{{turn.name}}</ion-select-option>
-        </ion-select>
-      </ion-item>
-    </ion-list>
-  </form> -->
 </ion-content>
-
-<ion-footer class="footer">
-  <p>
-    Copyright © 2019 MS Technologies SA. Todos los derechos reservados.
-  </p>
-</ion-footer>

@@ -3,11 +3,11 @@
     <ion-title>
       Mi Pedido
     </ion-title>
-    <ion-buttons slot="end">
+    <!-- <ion-buttons slot="end">
       <ion-button (click)="logout()">
         <ion-icon color="danger" slot="icon-only" name="log-out"></ion-icon>
       </ion-button>
-    </ion-buttons>
+    </ion-buttons> -->
   </ion-toolbar>
 </ion-header>
 
@@ -22,7 +22,7 @@
     </ion-row>
   </ion-grid>
   <ion-list mode="ios" lines="full" *ngIf="order">
-    <ion-list-header type="ios" color="primary">
+    <ion-list-header type="ios">
       <ion-label>
         <h2>Detalles del pedido</h2>
       </ion-label>
@@ -72,8 +72,8 @@
   </ion-list>
 </ion-content>
 
-<ion-footer class="footer">
+<!-- <ion-footer class="footer">
   <p>
     Copyright © 2019 MS Technologies SA. Todos los derechos reservados.
   </p>
-</ion-footer>
+</ion-footer> -->

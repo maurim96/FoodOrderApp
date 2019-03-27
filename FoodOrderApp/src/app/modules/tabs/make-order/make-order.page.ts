@@ -20,46 +20,50 @@ export class MakeOrderPage {
     private _loginService: LoginService,
     private _fb: FormBuilder
   ) { }
-
+  currentStep: number = 1;
   formMenu: FormGroup;
   selectedMenu: any;
+  selectedType: any;
   selectedGarnish: any;
+  selectedSauce: any;  
+  selectedIngredients: any[];
   menus: any[];
   locations: any[];
   turns: any[];
   garnishes: any[];
   ingredients: any[];
 
-  get menu() { return this.formMenu.get('menu') }
-  get location() { return this.formMenu.get('location') }
-  get turn() { return this.formMenu.get('turn') }
+  // get menu() { return this.formMenu.get('menu') }
+  // get location() { return this.formMenu.get('location') }
+  // get turn() { return this.formMenu.get('turn') }
   get type() { return this.formMenu.get('type') }
+  get sauce() { return this.formMenu.get('sauce') }
   get garnish() { return this.formMenu.get('garnish') }
   get ingredient() { return this.formMenu.get('ingredient') }
 
   ngOnInit() {
-    this.formMenu = this.createModel();
     this.preloadData();
   }
 
-  next() {
-    this.slides.slideNext();
-    // this.slides.updateAutoHeight(2000);
-  }
-
-  prev() {
-    this.slides.slidePrev();
-  }
-
   createModel() {
-    return this._fb.group({
-      menu: ['', Validators.required],
-      location: ['', Validators.required],
-      turn: ['', Validators.required],
-      type: [''],
-      garnish: [''],
-      ingredient: ['']
-    })
+    if (this.selectedMenu.type.length > 0) {
+      if (this.selectedMenu.hasGarnish) {
+        this.formMenu = this._fb.group({
+          type: ['', Validators.required],
+          garnish: ['', Validators.required],
+          ingredient: ['', Validators.required]
+        })
+      } else {
+        this.formMenu = this._fb.group({
+          type: ['', Validators.required],
+          sauce: ['', Validators.required]
+        })
+      }
+    } else {
+      this.formMenu = this._fb.group({
+        ingredient: ['', Validators.required]
+      })
+    }
   }
 
   preloadData() {
@@ -77,12 +81,16 @@ export class MakeOrderPage {
     })
     this._orderService.getAllIngredients().subscribe(res => {
       this.ingredients = res;
-      console.log(this.ingredients)
     })
   }
 
-  logout() {
-    this._loginService.logout();
+  checkStep(step) {
+    if (this.currentStep === step) return true;
+    else return false
+  }
+
+  prev() {
+    this.currentStep--;
   }
 
   menuChanged(idMenu) {
@@ -90,19 +98,47 @@ export class MakeOrderPage {
       if (x._id === idMenu) return x;
     })
     this.selectedMenu = menuSelected[0];
-    console.log(this.selectedMenu);
-    this.next();
+    this.currentStep++;
+    this.createModel();
+  }
+
+  typeChanged() {
+    const typeSelected = this.selectedMenu.type.filter(x => {
+      if (x._id === this.type.value) return x;
+    })   
+    this.selectedType = typeSelected[0];
+  }
+
+  ingredientsChanged() {
+    const ingredientsSelected = this.ingredients.filter(x => {
+      if (this.ingredient.value.includes(x._id)) return x;
+    })   
+    this.selectedIngredients = ingredientsSelected;
+    console.log(this.selectedIngredients)
+  }
+
+  sauceChanged() {
+    const sauceSelected = this.selectedMenu.sauce.filter(x => {
+      if (x._id === this.sauce.value) return x;
+    })   
+    this.selectedType = sauceSelected[0];
   }
 
   garnishChanged() {
     const garnishSelected = this.garnishes.filter(x => {
-      if (x._id === this.garnish.value && x.isSalad) return x;
-    })
+      if (x._id === this.garnish.value) return x;
+    })        
+    if (!garnishSelected[0].isSalad) {
+      this.ingredient.setValidators(null);
+      this.ingredient.patchValue('');
+    }
     this.selectedGarnish = garnishSelected[0];
-    console.log(this.selectedGarnish);
   }
 
   garnishIngredientsChanged() {
-    console.log(this.ingredient)
+    const ingredientSelected = this.ingredients.filter(x => {
+      if (this.ingredient.value.includes(x._id)) return x;
+    })
+    this.selectedIngredients = ingredientSelected;
   }
 }

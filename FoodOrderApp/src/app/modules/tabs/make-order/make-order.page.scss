@@ -1,11 +1,37 @@
+ion-content {
+    --background: var(--back-color);
+}
+ion-list {
+    width: 100%;
+    background-color: var(--back-color);
+}
+ion-item {
+    padding: 2%;
+}
+ion-button {
+    color: rgba(0, 0, 0, 0.7);
+    --background: white;
+    --background-activated: white;
+}
+.edited-slide {
+    width: 50%;
+}
+.div-animated {
+    transition: all 0.5s ease-in-out;
+}
 .select {
     max-width: none;
 }
 .title-form {
     padding-left: 0;
 }
-ion-list {
-    width: 100%;
+.title-list {
+    padding-top: 2%;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.75);
+}
+.list-ios {
+    margin-bottom: 0;
 }
 .second-slide {
     display: inline;
@@ -24,7 +50,4 @@ ion-list {
     padding-top: 0;
     padding-left: 0;
     padding-right: 0;    
-}
-.swiper-wrapper {
-    height: auto;
 }
