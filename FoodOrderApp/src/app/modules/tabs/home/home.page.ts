@@ -25,7 +25,4 @@ export class HomePage {
     })
   }
   
-  logout() {
-    this._loginService.logout();    
-  }
 }

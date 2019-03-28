@@ -13,13 +13,19 @@ export class OrderService {
   ) { }
   private order = new BehaviorSubject<any>(null);
   order$ = this.order.asObservable();   
+  private currentOrder: any;
 
   getOrderByClient(idClient: string) : Observable<any> {
     return this._httpClient.get(Constants.apiRoot + 'order/' + idClient);
   }
 
   setOrderClient(order) {
+    this.currentOrder = order;
     this.order.next(order);
+  }
+
+  hasOrder() {
+    return !this.currentOrder.msg;
   }
 
   getAllMenus() : Observable<any> {

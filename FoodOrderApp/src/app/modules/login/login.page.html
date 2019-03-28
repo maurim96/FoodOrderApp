@@ -6,14 +6,18 @@
           <h1 class="title-form">MsFood</h1>
           <div padding>
             <ion-item class="ion-margin-bottom">
+              <ion-icon name="contact"></ion-icon>
               <ion-input name="usuario" type="text" placeholder="Usuario" formControlName="username"></ion-input>
             </ion-item>
             <ion-item>
-              <ion-input name="password" type="password" placeholder="Contraseña" formControlName="password"></ion-input>
+              <ion-icon name="lock"></ion-icon>
+              <ion-input name="password" type="password" placeholder="Contraseña" formControlName="password">
+              </ion-input>
             </ion-item>
           </div>
           <div padding>
-            <ion-button size="large" type="submit" [disabled]="!loginForm.valid" (click)="login()" expand="block">Ingresar</ion-button>
+            <ion-button size="large" type="submit" [disabled]="!loginForm.valid" (click)="login()" expand="block">
+              Ingresar</ion-button>
           </div>
         </ion-col>
       </ion-row>

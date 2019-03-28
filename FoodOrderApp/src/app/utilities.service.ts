@@ -15,7 +15,6 @@ export class UtilitiesService {
       duration: 1500,
       message: 'Cargando...',
       translucent: false,
-      mode: 'ios',
       showBackdrop: true
     });
     return await loading.present();

@@ -1,40 +1,19 @@
 ion-content {
     --background: var(--back-color);
 }
-ion-list {
-    width: 100%;
-    background-color: var(--back-color);
+ion-row {
+    background: white;    
 }
-ion-item {
-    padding: 2%;
+ion-chip {
+    background-color: white;
 }
 ion-button {
     color: rgba(0, 0, 0, 0.7);
     --background: white;
     --background-activated: white;
 }
-.edited-slide {
-    width: 50%;
-}
-.div-animated {
-    transition: all 0.5s ease-in-out;
-}
-.select {
-    max-width: none;
-}
-.title-form {
-    padding-left: 0;
-}
-.title-list {
-    padding-top: 2%;
-    text-align: center;
-    color: rgba(0, 0, 0, 0.75);
-}
-.list-ios {
-    margin-bottom: 0;
-}
-.second-slide {
-    display: inline;
+.avatar-list {
+    margin-right: 4%;
 }
 .buttons-container {    
     padding-left: 4%;
@@ -46,8 +25,41 @@ ion-button {
 .button-right {
     float: right;
 }
-.no-padding {
-    padding-top: 0;
-    padding-left: 0;
-    padding-right: 0;    
+.div-animated {
+    transition: all 0.5s ease-in-out;
+}
+.ion-row-edited {
+    border-radius: 20px;
+}
+.menu-list-item {
+    padding: 2%;
+}
+.menu-list {
+    width: 100%;
+    background-color: var(--back-color);
+}
+.no-padding-bottom {
+    padding-bottom: 0;
+}
+.scrollable-list {
+    height: 200px;
+    overflow-y: scroll;
+}
+.select {
+    max-width: none;
+}
+.subtitle-menu {
+    text-align: center;
+    font-size: 16px;
+}
+.title-list {
+    padding-top: 2%;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.75);
+}
+.title-menu {
+    font-size: 24px;
+}
+.unselected {
+    background: var(--back-color);
 }

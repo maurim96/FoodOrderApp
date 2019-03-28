@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TabsPage } from './tabs.page';
+import { RouteMyOrderGuard } from 'src/app/services/my-order-route.guard';
 
 const routes: Routes = [
   {
@@ -12,7 +13,8 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: './my-order/my-order.module#MyOrderPageModule'
+            loadChildren: './my-order/my-order.module#MyOrderPageModule',
+            canActivate: [RouteMyOrderGuard]
           }
         ]
       },
@@ -31,6 +33,15 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: './home/home.module#HomePageModule'
+          }
+        ]
+      },
+      {
+        path: 'settings',
+        children: [
+          {
+            path: '',
+            loadChildren: './settings/settings.module#SettingsPageModule'
           }
         ]
       },

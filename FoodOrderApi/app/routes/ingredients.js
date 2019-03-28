@@ -37,7 +37,8 @@ router.post('/', (req, res) => {
   const ingredient = new Ingredients({
     name: req.body.name,
     active: req.body.active,
-    isSpecial: req.body.isSpecial
+    isSpecial: req.body.isSpecial,
+    img: req.body.img
   });
   ingredient.save((err) => {
     if (err) {

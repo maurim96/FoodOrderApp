@@ -22,24 +22,28 @@ export class MakeOrderPage {
   ) { }
   currentStep: number = 1;
   formMenu: FormGroup;
+  additionalForm: FormGroup
   selectedMenu: any;
   selectedType: any;
   selectedGarnish: any;
   selectedSauce: any;  
   selectedIngredients: any[];
+  selectedSpecial: any;
   menus: any[];
   locations: any[];
   turns: any[];
   garnishes: any[];
   ingredients: any[];
-
-  // get menu() { return this.formMenu.get('menu') }
-  // get location() { return this.formMenu.get('location') }
-  // get turn() { return this.formMenu.get('turn') }
+  specials: any[];
+  displayIngredients: boolean = true;
+  
+  get location() { return this.additionalForm.get('location') }
+  get turn() { return this.additionalForm.get('turn') }
   get type() { return this.formMenu.get('type') }
   get sauce() { return this.formMenu.get('sauce') }
   get garnish() { return this.formMenu.get('garnish') }
   get ingredient() { return this.formMenu.get('ingredient') }
+  get special() { return this.formMenu.get('special') }
 
   ngOnInit() {
     this.preloadData();
@@ -51,7 +55,7 @@ export class MakeOrderPage {
         this.formMenu = this._fb.group({
           type: ['', Validators.required],
           garnish: ['', Validators.required],
-          ingredient: ['', Validators.required]
+          ingredient: ['', [Validators.required, Validators.maxLength(3)]]
         })
       } else {
         this.formMenu = this._fb.group({
@@ -61,7 +65,8 @@ export class MakeOrderPage {
       }
     } else {
       this.formMenu = this._fb.group({
-        ingredient: ['', Validators.required]
+        ingredient: ['', [Validators.required, Validators.maxLength(5)]],
+        special: ['', Validators.maxLength(1)]
       })
     }
   }
@@ -80,7 +85,12 @@ export class MakeOrderPage {
       this.garnishes = res;
     })
     this._orderService.getAllIngredients().subscribe(res => {
-      this.ingredients = res;
+      this.ingredients = res.filter(x => {
+        if(!x.isSpecial) return x;
+      });
+      this.specials = res.filter(x => {
+        if(x.isSpecial) return x;
+      });
     })
   }
 
@@ -102,6 +112,14 @@ export class MakeOrderPage {
     this.createModel();
   }
 
+  showIngredients() {
+    this.displayIngredients = true;    
+  }
+
+  showSpecials() {
+    this.displayIngredients = false;
+  }
+
   typeChanged() {
     const typeSelected = this.selectedMenu.type.filter(x => {
       if (x._id === this.type.value) return x;
@@ -114,7 +132,6 @@ export class MakeOrderPage {
       if (this.ingredient.value.includes(x._id)) return x;
     })   
     this.selectedIngredients = ingredientsSelected;
-    console.log(this.selectedIngredients)
   }
 
   sauceChanged() {
