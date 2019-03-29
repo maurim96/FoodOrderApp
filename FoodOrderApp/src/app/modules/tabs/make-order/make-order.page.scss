@@ -31,6 +31,9 @@ ion-button {
 .ion-row-edited {
     border-radius: 20px;
 }
+.hidden { 
+    display: none;
+}
 .menu-list-item {
     padding: 2%;
 }
@@ -59,6 +62,12 @@ ion-button {
 }
 .title-menu {
     font-size: 24px;
+}
+.title-last-step {
+    padding: 2%;
+    text-align: center;
+    padding-top: 5%;
+    color: rgba(0,0,0,0.8);
 }
 .unselected {
     background: var(--back-color);

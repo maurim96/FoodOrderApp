@@ -5,6 +5,8 @@ import { LoginService } from 'src/app/services/login.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ViewChild } from '@angular/core';
 import { timeout } from 'q';
+import { ValidateLength } from 'src/app/length.validator';
+import { ValidateLengthSmaller } from 'src/app/length-smaller.validator.';
 
 
 @Component({
@@ -17,7 +19,6 @@ export class MakeOrderPage {
   @ViewChild('slides') slides: IonSlides;
   constructor(
     private _orderService: OrderService,
-    private _loginService: LoginService,
     private _fb: FormBuilder
   ) { }
   currentStep: number = 1;
@@ -26,8 +27,8 @@ export class MakeOrderPage {
   selectedMenu: any;
   selectedType: any;
   selectedGarnish: any;
-  selectedSauce: any;  
-  selectedIngredients: any[];
+  selectedSauce: any;
+  selectedIngredients = [];
   selectedSpecial: any;
   menus: any[];
   locations: any[];
@@ -36,7 +37,7 @@ export class MakeOrderPage {
   ingredients: any[];
   specials: any[];
   displayIngredients: boolean = true;
-  
+
   get location() { return this.additionalForm.get('location') }
   get turn() { return this.additionalForm.get('turn') }
   get type() { return this.formMenu.get('type') }
@@ -47,6 +48,10 @@ export class MakeOrderPage {
 
   ngOnInit() {
     this.preloadData();
+    this.additionalForm = this._fb.group({
+      turn: ['', Validators.required],
+      location: ['', Validators.required]
+    })
   }
 
   createModel() {
@@ -55,7 +60,7 @@ export class MakeOrderPage {
         this.formMenu = this._fb.group({
           type: ['', Validators.required],
           garnish: ['', Validators.required],
-          ingredient: ['', [Validators.required, Validators.maxLength(3)]]
+          ingredient: [[], [Validators.required, ValidateLengthSmaller]]
         })
       } else {
         this.formMenu = this._fb.group({
@@ -65,8 +70,8 @@ export class MakeOrderPage {
       }
     } else {
       this.formMenu = this._fb.group({
-        ingredient: ['', [Validators.required, Validators.maxLength(5)]],
-        special: ['', Validators.maxLength(1)]
+        ingredient: [[], [Validators.required, ValidateLength]],
+        special: ['']
       })
     }
   }
@@ -86,10 +91,10 @@ export class MakeOrderPage {
     })
     this._orderService.getAllIngredients().subscribe(res => {
       this.ingredients = res.filter(x => {
-        if(!x.isSpecial) return x;
+        if (!x.isSpecial) return x;
       });
       this.specials = res.filter(x => {
-        if(x.isSpecial) return x;
+        if (x.isSpecial) return x;
       });
     })
   }
@@ -101,6 +106,23 @@ export class MakeOrderPage {
 
   prev() {
     this.currentStep--;
+    if (this.currentStep === 1) {
+      this.cleanSelection();
+    }
+  }
+
+  next() {
+    console.log(this.formMenu)
+    this.currentStep++;
+  }
+
+  cleanSelection() {
+    this.selectedMenu = null;
+    this.selectedType = null;
+    this.selectedGarnish = null;
+    this.selectedSauce = null;
+    this.selectedIngredients = [];
+    this.selectedSpecial = null;
   }
 
   menuChanged(idMenu) {
@@ -113,7 +135,7 @@ export class MakeOrderPage {
   }
 
   showIngredients() {
-    this.displayIngredients = true;    
+    this.displayIngredients = true;
   }
 
   showSpecials() {
@@ -123,28 +145,28 @@ export class MakeOrderPage {
   typeChanged() {
     const typeSelected = this.selectedMenu.type.filter(x => {
       if (x._id === this.type.value) return x;
-    })   
+    })
     this.selectedType = typeSelected[0];
   }
 
   ingredientsChanged() {
     const ingredientsSelected = this.ingredients.filter(x => {
       if (this.ingredient.value.includes(x._id)) return x;
-    })   
+    })
     this.selectedIngredients = ingredientsSelected;
   }
 
   sauceChanged() {
     const sauceSelected = this.selectedMenu.sauce.filter(x => {
       if (x._id === this.sauce.value) return x;
-    })   
+    })
     this.selectedType = sauceSelected[0];
   }
 
   garnishChanged() {
     const garnishSelected = this.garnishes.filter(x => {
       if (x._id === this.garnish.value) return x;
-    })        
+    })
     if (!garnishSelected[0].isSalad) {
       this.ingredient.setValidators(null);
       this.ingredient.patchValue('');
@@ -157,5 +179,34 @@ export class MakeOrderPage {
       if (this.ingredient.value.includes(x._id)) return x;
     })
     this.selectedIngredients = ingredientSelected;
+  }
+
+  checkState(ingredient, maxLength) {
+    if (this.ingredient.value.length === maxLength && !this.ingredient.value.includes(ingredient)) {
+      return true;
+    }
+    return false;
+  }
+
+  checkOption(ingredient) {
+    if (this.selectedIngredients.includes(ingredient)) {
+      const index = this.selectedIngredients.indexOf(ingredient, 0);
+      if (index > -1) {
+        this.selectedIngredients.splice(index, 1);
+      }
+    } else {
+      this.selectedIngredients.push(ingredient);
+    }
+    this.ingredient.patchValue(this.selectedIngredients);
+  }
+
+  checkSpecial(special) {
+    if (this.selectedSpecial === special) {
+      this.selectedSpecial = null;
+      this.special.patchValue("");
+    } else {
+      this.selectedSpecial = special;
+      this.special.patchValue(special);
+    }
   }
 }

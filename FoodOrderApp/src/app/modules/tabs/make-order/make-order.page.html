@@ -31,30 +31,32 @@
       <ion-grid *ngIf="selectedMenu?.isSalad">
         <ion-row class="ion-row-edited">
           <ion-col size="6" padding (click)="showIngredients()" [ngClass]="{'unselected': !displayIngredients}">
-            <ion-title class="subtitle-menu">Ingredientes (5)</ion-title>
+            <ion-title class="subtitle-menu">Ingredientes ({{ingredient?.value?.length}})</ion-title>
           </ion-col>
           <ion-col size="6" padding (click)="showSpecials()" [ngClass]="{'unselected': displayIngredients}">
-            <ion-title class="subtitle-menu">Especiales (1)</ion-title>
+            <ion-title class="subtitle-menu">Especiales ({{selectedSpecial ? 1 : 0}})</ion-title>
           </ion-col>
-          <ion-col size="12" *ngIf="displayIngredients">
+          <ion-col size="12" [ngClass]="{'hidden': !displayIngredients}">
             <ion-list class="scrollable-list">
               <ion-item *ngFor="let ingredient of ingredients">
                 <ion-avatar class="avatar-list">
                   <img src="{{ingredient.img}}">
                 </ion-avatar>
                 <ion-label>{{ingredient.name}}</ion-label>
-                <ion-checkbox slot="end"></ion-checkbox>
+                <ion-checkbox slot="end" (ionChange)="checkOption(ingredient.name)"
+                  [disabled]="checkState(ingredient.name,5)"></ion-checkbox>
               </ion-item>
             </ion-list>
           </ion-col>
-          <ion-col size="12" *ngIf="!displayIngredients">
+          <ion-col size="12" [ngClass]="{'hidden': displayIngredients}">
             <ion-list class="scrollable-list">
               <ion-item *ngFor="let special of specials">
                 <ion-avatar class="avatar-list">
                   <img src="{{special.img}}">
                 </ion-avatar>
                 <ion-label>{{special.name}}</ion-label>
-                <ion-checkbox slot="end"></ion-checkbox>
+                <ion-checkbox slot="end" (ionChange)="checkSpecial(special.name)"
+                  [disabled]="selectedSpecial && selectedSpecial != special.name"></ion-checkbox>
               </ion-item>
             </ion-list>
           </ion-col>
@@ -87,23 +89,23 @@
       <ion-grid *ngIf="!selectedMenu?.isSalad && selectedGarnish?.isSalad">
         <ion-row>
           <ion-col size="12" padding class="no-padding-bottom">
-            <ion-title><strong>Ingredientes (3):</strong></ion-title>
+            <ion-title><strong>Ingredientes ({{ingredient?.value?.length}}):</strong></ion-title>
           </ion-col>
-          <ion-col size="12" *ngIf="displayIngredients">
+          <ion-col size="12">
             <ion-list class="scrollable-list">
               <ion-item *ngFor="let ingredient of ingredients">
                 <ion-avatar class="avatar-list">
                   <img src="{{ingredient.img}}">
                 </ion-avatar>
                 <ion-label>{{ingredient.name}}</ion-label>
-                <ion-checkbox slot="end"></ion-checkbox>
+                <ion-checkbox slot="end" (ionChange)="checkOption(ingredient.name)"
+                  [disabled]="checkState(ingredient.name,3)"></ion-checkbox>
               </ion-item>
             </ion-list>
           </ion-col>
         </ion-row>
       </ion-grid>
     </form>
-
     <div class="buttons-container">
       <ion-button (click)="prev()" class="button-left">
         <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
@@ -114,16 +116,33 @@
     </div>
   </div>
 
-  <!-- <ion-item>
-                      <ion-title><strong>Ubicación:</strong></ion-title>
-                      <ion-select interface="popover" class="select" formControlName="location">
-                        <ion-select-option *ngFor="let location of locations" value="{{location._id}}">{{location.name}}</ion-select-option>
-                      </ion-select>
-                    </ion-item>
-                    <ion-item>
-                      <ion-title><strong>Turno:</strong></ion-title>
-                      <ion-select interface="popover" class="select" formControlName="turn">
-                        <ion-select-option *ngFor="let turn of turns" value="{{turn._id}}">{{turn.name}}</ion-select-option>
-                      </ion-select>
-                    </ion-item> -->
+  <div *ngIf="checkStep(3)">
+    <form [formGroup]="additionalForm">
+      <ion-title class="title-last-step">Información adicional</ion-title>
+      <ion-list lines="none" class="menu-list">
+        <ion-item class="menu-list-item">
+          <ion-title><strong>Ubicación:</strong></ion-title>          
+          <ion-select interface="popover" class="select" formControlName="location">
+            <ion-select-option *ngFor="let location of locations" value="{{location._id}}">{{location.name}}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item class="menu-list-item">
+          <ion-title><strong>Turno:</strong></ion-title>
+          <ion-select interface="popover" class="select" formControlName="turn">
+            <ion-select-option *ngFor="let turn of turns" value="{{turn._id}}">{{turn.name}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-list>
+    </form>
+    <div class="buttons-container">
+      <ion-button (click)="prev()" class="button-left">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+      <ion-button class="button-right" [disabled]="!additionalForm.valid">
+        <ion-icon slot="icon-only" name="arrow-forward"></ion-icon>
+      </ion-button>
+    </div>
+  </div>
+
 </ion-content>
