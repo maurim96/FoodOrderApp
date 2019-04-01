@@ -1,0 +1,29 @@
+<form [formGroup]="additionalForm">
+  <ion-title class="title-last-step">Información adicional</ion-title>
+  <ion-list lines="none" class="menu-list">
+    <ion-item class="menu-list-item">
+      <ion-title><strong>Ubicación:</strong></ion-title>
+      <ion-select interface="popover" class="select" formControlName="location">
+        <ion-select-option *ngFor="let location of locations" value="{{location._id}}">{{location.name}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item class="menu-list-item">
+      <ion-title><strong>Turno:</strong></ion-title>
+      <ion-select interface="popover" class="select" formControlName="turn">
+        <ion-select-option *ngFor="let turn of turns" value="{{turn._id}}">{{turn.name}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item class="menu-list-item">
+      <ion-textarea placeholder="Observaciones..." formControlName="note"></ion-textarea>
+    </ion-item>
+  </ion-list>
+</form>
+<div class="buttons-container">
+  <ion-button (click)="prev()" class="button-left">
+    <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+  </ion-button>
+  <ion-button class="button-right" (click)="next()" [disabled]="!additionalForm.valid">
+    <ion-icon slot="icon-only" name="arrow-forward"></ion-icon>
+  </ion-button>
+</div>

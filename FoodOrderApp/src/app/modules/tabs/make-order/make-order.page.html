@@ -8,7 +8,8 @@
 
 <ion-content>
   <div class="div-animated" *ngIf="checkStep(1)">
-    <ion-list lines="none" class="menu-list">
+    <app-menu-selection (selectMenu)="selectMenu($event)"></app-menu-selection>
+    <!-- <ion-list lines="none" class="menu-list">
       <ion-list-header>
         <ion-title class="title-list">Menús disponibles</ion-title>
       </ion-list-header>
@@ -19,11 +20,11 @@
         <ion-label>{{menu.name}}</ion-label>
         <ion-icon name="arrow-dropright"></ion-icon>
       </ion-item>
-    </ion-list>
+    </ion-list> -->
   </div>
 
   <div class="div-animated" *ngIf="checkStep(2)">
-    <ion-img [src]="selectedMenu?.img"></ion-img>
+    <!-- <ion-img [src]="selectedMenu?.img"></ion-img>
     <ion-title padding class="title-menu">{{selectedMenu?.name}}</ion-title>
 
     <form [formGroup]="formMenu">
@@ -113,36 +114,12 @@
       <ion-button (click)="next()" class="button-right" [disabled]="!formMenu.valid">
         <ion-icon slot="icon-only" name="arrow-forward"></ion-icon>
       </ion-button>
-    </div>
+    </div> -->
+    <app-order-data [selectedMenu]="selectedMenu" (prevPage)="prev()" (confirmForm)="orderData($event)"></app-order-data>
   </div>
 
   <div *ngIf="checkStep(3)">
-    <form [formGroup]="additionalForm">
-      <ion-title class="title-last-step">Información adicional</ion-title>
-      <ion-list lines="none" class="menu-list">
-        <ion-item class="menu-list-item">
-          <ion-title><strong>Ubicación:</strong></ion-title>          
-          <ion-select interface="popover" class="select" formControlName="location">
-            <ion-select-option *ngFor="let location of locations" value="{{location._id}}">{{location.name}}
-            </ion-select-option>
-          </ion-select>
-        </ion-item>
-        <ion-item class="menu-list-item">
-          <ion-title><strong>Turno:</strong></ion-title>
-          <ion-select interface="popover" class="select" formControlName="turn">
-            <ion-select-option *ngFor="let turn of turns" value="{{turn._id}}">{{turn.name}}</ion-select-option>
-          </ion-select>
-        </ion-item>
-      </ion-list>
-    </form>
-    <div class="buttons-container">
-      <ion-button (click)="prev()" class="button-left">
-        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
-      </ion-button>
-      <ion-button class="button-right" [disabled]="!additionalForm.valid">
-        <ion-icon slot="icon-only" name="arrow-forward"></ion-icon>
-      </ion-button>
-    </div>
+    <app-additional-info (prevPage)="prev()" (confirmForm)="additionalInfo($event)"></app-additional-info>
   </div>
 
 </ion-content>

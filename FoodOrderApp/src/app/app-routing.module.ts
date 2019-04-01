@@ -11,7 +11,7 @@ const routes: Routes = [
     path: 'app', loadChildren: './modules/tabs/tabs.module#TabsPageModule',
     canActivate: [RouteGuard]
   },
-  { path: 'settings', loadChildren: './modules/tabs/settings/settings.module#SettingsPageModule' }
+  { path: 'settings', loadChildren: './modules/tabs/settings/settings.module#SettingsPageModule' }  
 ];
 @NgModule({
   imports: [
