@@ -39,12 +39,12 @@ export class OrderDataComponent implements OnInit {
   get special() { return this.formMenu.get('special') }
 
   ngOnInit() {
-    this.preloadData();    
+    this.preloadData();
   }
 
   ngOnChanges(changes: SimpleChanges) {
     console.log(changes);
-    this.formMenu = this.createModel();    
+    this.formMenu = this.createModel();
   }
 
   createModel() {
@@ -112,15 +112,13 @@ export class OrderDataComponent implements OnInit {
     const data = {
       menu: this.selectedMenu._id,
       mainCourse: {
-        type: this.type ? this.type.value : "",        
+        type: this.type ? this.type.value : "",
         sauce: this.sauce ? this.sauce.value : "",
         ingredients: this.ingredient ? this.ingredient.value : [],
         special: this.special ? this.special.value : ""
       },
-      garnish: {
-        garnish: this.selectedGarnish ? this.selectedGarnish._id : "",
-        garnishIngredients: this.garnishIngredients ? this.garnishIngredients.value : []
-      }
+      garnish: this.selectedGarnish ? this.selectedGarnish._id : null,
+      garnishIngredients: this.garnishIngredients ? this.garnishIngredients.value : []
     }
     this.confirmForm.emit(data);
   }

@@ -9,14 +9,18 @@ import { Observable, BehaviorSubject } from 'rxjs';
 export class OrderService {
 
   constructor(
-      private _httpClient: HttpClient
+    private _httpClient: HttpClient
   ) { }
   private order = new BehaviorSubject<any>(null);
-  order$ = this.order.asObservable();   
+  order$ = this.order.asObservable();
   private currentOrder: any;
 
-  getOrderByClient(idClient: string) : Observable<any> {
-    return this._httpClient.get(Constants.apiRoot + 'order/' + idClient);
+  createOrder(order: any): Observable<any> {
+    return this._httpClient.post(Constants.apiRoot + 'order', order);
+  }
+
+  updateOrder(order: any): Observable<any> {
+    return this._httpClient.put(Constants.apiRoot + 'order/' + order.user, order);
   }
 
   setOrderClient(order) {
@@ -28,23 +32,27 @@ export class OrderService {
     return !this.currentOrder.msg;
   }
 
-  getAllMenus() : Observable<any> {
+  getOrderByClient(idClient: string): Observable<any> {
+    return this._httpClient.get(Constants.apiRoot + 'order/' + idClient);
+  }
+
+  getAllMenus(): Observable<any> {
     return this._httpClient.get(Constants.apiRoot + 'menu');
   }
-  
-  getAllLocations() : Observable<any> {
+
+  getAllLocations(): Observable<any> {
     return this._httpClient.get(Constants.apiRoot + 'location');
   }
 
-  getAllTurns() : Observable<any> {
+  getAllTurns(): Observable<any> {
     return this._httpClient.get(Constants.apiRoot + 'turn');
   }
 
-  getAllGarnishes() : Observable<any> {
+  getAllGarnishes(): Observable<any> {
     return this._httpClient.get(Constants.apiRoot + 'garnish');
   }
-  
-  getAllIngredients() : Observable<any> {
+
+  getAllIngredients(): Observable<any> {
     return this._httpClient.get(Constants.apiRoot + 'ingredients');
   }
 }

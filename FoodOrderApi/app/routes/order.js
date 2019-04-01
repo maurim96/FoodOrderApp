@@ -40,6 +40,7 @@ router.post('/', (req, res) => {
         menu: req.body.menu,
         mainCourse: req.body.mainCourse,
         garnish: req.body.garnish,
+        garnishIngredients: req.body.garnishIngredients,
         location: req.body.location,
         turn: req.body.turn,
         user: req.body.user,
