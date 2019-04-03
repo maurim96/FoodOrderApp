@@ -8,8 +8,9 @@ router.get('/', (req, res, next) => {
         .then(result => {
             if (result) {
                 res.status(200).json(result);
+            } else {
+                res.json({ msg: 'No order was found' });
             }
-            res.json({msg: 'No order was found'});
         }, err => {
             if (err) {
                 res.status(500).send(err);
@@ -25,8 +26,9 @@ router.get('/:idUser', (req, res, next) => {
         .then(result => {
             if (result) {
                 res.status(200).json(result);
+            } else {
+                res.json({ msg: 'No order was found for that user' });
             }
-            res.json({msg: 'No order was found for that user'});
         }, err => {
             if (err) {
                 res.status(500).send(err);
@@ -58,13 +60,17 @@ router.post('/', (req, res) => {
 });
 
 //Update Order
-router.put('/:id', async (req, res) => {
-    Order.findOneAndUpdate({ _id: req.params.id }, req.body).then(eee => {
+router.put('/', async (req, res) => {
+    Order.findOneAndUpdate({ user: req.body.user, date: req.body.date }, req.body)
+    .then(result => {
+        if (result) {
+            res.status(200).json(result);
+        } else {
+            res.json({ msg: 'No order was found for that user' });
+        }
+    }, err => {
         if (err) {
             res.status(500).send(err);
-        } else {
-            console.log(eee);
-            res.send(eee);
         }
     });
 });

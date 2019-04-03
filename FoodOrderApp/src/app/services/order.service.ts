@@ -19,11 +19,12 @@ export class OrderService {
     return this._httpClient.post(Constants.apiRoot + 'order', order);
   }
 
-  updateOrder(order: any): Observable<any> {
-    return this._httpClient.put(Constants.apiRoot + 'order/' + order.user, order);
+  updateOrder(order: any): Observable<any> {    
+    return this._httpClient.put(Constants.apiRoot + 'order', order);
   }
 
   setOrderClient(order) {
+    //console.log(order)
     this.currentOrder = order;
     this.order.next(order);
   }

@@ -37,16 +37,26 @@
       </ion-thumbnail>
       <ion-label>
         <h3>Plato principal</h3>
-        <p class="text-no-elipsis">{{this.order?.menu.name}}: {{this.order?.mainCourse.type}}</p>
+        <p class="text-no-elipsis">{{this.order?.menu.name}}: {{this.order?.mainCourse.type}} {{this.order?.mainCourse.ingredients.toString()}}</p>
       </ion-label>
     </ion-item>
-    <ion-item>
+    <ion-item *ngIf="this.order?.garnish">
       <ion-thumbnail slot="start">
         <img src="{{this.order?.garnish?.img}}">
       </ion-thumbnail>
       <ion-label>
         <h3>Guarnición</h3>
-        <p class="text-no-elipsis">{{this.order?.garnish?.name}}</p>
+        <p class="text-no-elipsis" *ngIf="!this.order?.garnish?.isSalad">{{this.order?.garnish?.name}}</p>
+        <p class="text-no-elipsis" *ngIf="this.order?.garnish?.isSalad">{{this.order?.garnish?.name}}: {{this.order?.garnishIngredients.toString()}}</p>
+      </ion-label>
+    </ion-item>
+    <ion-item *ngIf="this.order?.mainCourse?.special != ''">
+      <ion-thumbnail slot="start">
+        <img src="{{this.order?.mainCourse?.specialImg}}">
+      </ion-thumbnail>
+      <ion-label>
+        <h3>Gusto especial</h3>
+        <p class="text-no-elipsis">{{this.order?.mainCourse?.special}}</p>
       </ion-label>
     </ion-item>
     <ion-item>

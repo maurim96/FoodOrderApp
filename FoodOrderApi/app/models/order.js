@@ -5,8 +5,9 @@ const orderSchema = new mongoose.Schema({
     mainCourse: {
         type: { type: String, required: false },
         ingredients: [{ type: String, required: false }],
-        special: [{ type: String, required: false }],
-        sauce: { type: String, required: false }
+        special: { type: String, required: false },
+        specialImg: {type: String, required: false},
+        sauce: { type: String, required: false }     
     },
     garnish: { type: mongoose.Schema.Types.ObjectId, ref: 'garnish', required: false },
     garnishIngredients: [{ type: String, required: false }],

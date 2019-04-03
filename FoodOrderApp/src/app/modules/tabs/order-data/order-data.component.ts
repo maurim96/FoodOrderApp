@@ -42,8 +42,7 @@ export class OrderDataComponent implements OnInit {
     this.preloadData();
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    console.log(changes);
+  ngOnChanges(changes: SimpleChanges) {    
     this.formMenu = this.createModel();
   }
 
@@ -58,7 +57,7 @@ export class OrderDataComponent implements OnInit {
       } else {
         return this._fb.group({
           type: ['', Validators.required],
-          sauce: ['', Validators.required]
+          sauce: ['']
         })
       }
     } else {
@@ -108,14 +107,15 @@ export class OrderDataComponent implements OnInit {
     }
   }
 
-  next() {
+  next() {    
     const data = {
       menu: this.selectedMenu._id,
       mainCourse: {
         type: this.type ? this.type.value : "",
         sauce: this.sauce ? this.sauce.value : "",
         ingredients: this.ingredient ? this.ingredient.value : [],
-        special: this.special ? this.special.value : ""
+        special: this.special ? this.special.value : "",
+        specialImg: this.special ? this.specials.filter(x => {if(x.name === this.special.value) return x.img})[0].img : ""
       },
       garnish: this.selectedGarnish ? this.selectedGarnish._id : null,
       garnishIngredients: this.garnishIngredients ? this.garnishIngredients.value : []

@@ -32,7 +32,7 @@ export class LoginService {
     this._nativeStorage.setItem('user', { value: '' })
       .then(
         () => {
-          console.log('User logged out')
+          // console.log('User logged out')
           // this._router.navigateByUrl('login');
         },
         error => console.error('Error storing item', error)
@@ -46,7 +46,7 @@ export class LoginService {
     this._nativeStorage.setItem('user', { value: this.user })
       .then(
         () => {
-          console.log('Stored item!');
+          // console.log('Stored item!');
           // this._router.navigateByUrl('app/tabs/home')
         },
         error => console.error('Error storing item', error)

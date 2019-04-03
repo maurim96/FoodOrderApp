@@ -3,13 +3,14 @@ var Menu = mongoose.model('menu');
 var router = require('express').Router();
 
 //Get all Menues
-router.get('/', (req, res, next) => {  
+router.get('/', (req, res, next) => {
   Menu.find({}).sort({ name: 1 })
     .then(result => {
       if (result) {
         res.status(200).json(result);
+      } else {
+        res.json({ msg: 'No Menu was found' });
       }
-      res.json({msg: 'No Menu was found'});      
     }, err => {
       if (err) {
         res.status(500).send(err);
@@ -27,7 +28,7 @@ router.get('/:id', (req, res, next) => {
       res.json(result);
     }
     else {
-      res.json({msg: 'No Menu was found with this id'});
+      res.json({ msg: 'No Menu was found with this id' });
     }
   });
 });
@@ -48,7 +49,7 @@ router.post('/', (req, res) => {
       res.status(500).send(err);
     }
     else {
-      res.status(201).json(menu);      
+      res.status(201).json(menu);
     }
   });
 });

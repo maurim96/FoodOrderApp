@@ -14,8 +14,7 @@ export class MyOrderPage {
 
   ngOnInit() {
     this._orderService.order$.subscribe(res => {
-      this.order = res;
-      console.log("My order ", this.order)
+      this.order = res;      
     })
   }
 
