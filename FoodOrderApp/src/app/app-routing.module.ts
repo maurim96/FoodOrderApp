@@ -3,7 +3,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { RouteGuard } from './services/route.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', redirectTo: 'app', pathMatch: 'full' },
   {
     path: 'login', loadChildren: './modules/login/login.module#LoginPageModule'
   },
@@ -11,7 +11,10 @@ const routes: Routes = [
     path: 'app', loadChildren: './modules/tabs/tabs.module#TabsPageModule',
     canActivate: [RouteGuard]
   },
-  { path: 'settings', loadChildren: './modules/tabs/settings/settings.module#SettingsPageModule' }  
+  {
+    path: 'settings', loadChildren: './modules/tabs/settings/settings.module#SettingsPageModule',
+    canActivate: [RouteGuard]
+  }
 ];
 @NgModule({
   imports: [

@@ -29,11 +29,10 @@ export class LoginService {
 
   logout() {
     this.user = null;
-    this._nativeStorage.setItem('user', { value: '' })
+    this._nativeStorage.remove('user')
       .then(
         () => {
-          // console.log('User logged out')
-          // this._router.navigateByUrl('login');
+          console.log('User logged out')          
         },
         error => console.error('Error storing item', error)
       );
@@ -46,8 +45,7 @@ export class LoginService {
     this._nativeStorage.setItem('user', { value: this.user })
       .then(
         () => {
-          // console.log('Stored item!');
-          // this._router.navigateByUrl('app/tabs/home')
+          console.log('Stored item!');          
         },
         error => console.error('Error storing item', error)
       );
@@ -63,19 +61,22 @@ export class LoginService {
     if (this.user != null) {
       return true;
     }
+    return false;
+  }
+
+  checkLocalStorage() {
     this._nativeStorage.getItem('user')
       .then(
         data => {
-          this.user = data;
-          return true;
+          if (data) {
+            this.user = data;
+            this._router.navigateByUrl('app/tabs/home')
+          }
         },
         error => {
           console.error(error)
-          return false;
         }
       );
-    return false;
-
   }
 
 }
