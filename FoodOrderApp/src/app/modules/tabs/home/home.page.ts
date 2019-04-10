@@ -22,10 +22,4 @@ export class HomePage {
     })
   }
 
-  ionViewDidEnter() {
-    document.addEventListener("backbutton", function (e) {
-      console.log("disable back button")
-    }, false);
-  }
-
 }
