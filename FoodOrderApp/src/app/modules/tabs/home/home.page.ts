@@ -1,4 +1,3 @@
-import { UtilitiesService } from './../../../utilities.service';
 import { Component } from '@angular/core';
 import { LoginService } from '../../../services/login.service';
 import { OrderService } from '../../../services/order.service';
@@ -12,17 +11,15 @@ export class HomePage {
 
   idUser: string;
 
-  constructor(
-    public utilitiesService: UtilitiesService,
+  constructor(    
     private _loginService: LoginService,
     private _orderService: OrderService) { }
 
   ngOnInit() {
-    // this.utilitiesService.presentLoadingWithOptions();
     this.idUser = this._loginService.getUserId();
     this._orderService.getOrderByClient(this.idUser).subscribe(res => {
       this._orderService.setOrderClient(res);
     })
   }
-  
+
 }

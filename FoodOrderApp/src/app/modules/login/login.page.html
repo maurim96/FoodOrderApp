@@ -15,9 +15,10 @@
               </ion-input>
             </ion-item>
           </div>
-          <div padding>
-            <ion-button size="large" type="submit" [disabled]="!loginForm.valid" (click)="login()" expand="block">
+          <div padding  class="login-buttons">
+            <ion-button size="large" type="submit" [disabled]="!loginForm.valid" (click)="loginFingerpint()" expand="block">
               Ingresar</ion-button>
+            <!-- <ion-icon (click)="loginFingerpint()" name="finger-print" class="login-fingerprint"></ion-icon> -->            
           </div>
         </ion-col>
       </ion-row>
