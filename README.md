@@ -1,6 +1,12 @@
 # FoodOrderApp
 Mobile app that allows you to order food from various options.
 
+## Features
+
+***Native Storage implemented for keep user logged in***
+
+***FingerPrintAIO added to login (when it's activated on phone) for more security***
+
 ## Technology Stack
 ***Ionic v4.11.0***
 
