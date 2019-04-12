@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TabsPage } from './tabs.page';
-import { RouteMyOrderGuard } from 'src/app/services/my-order-route.guard';
+import { RouteMyOrderGuard } from 'src/app/guards/my-order-route.guard';
 
 const routes: Routes = [
   {

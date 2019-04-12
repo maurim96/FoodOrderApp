@@ -1,5 +1,5 @@
-import { ValidateLengthSmaller } from 'src/app/length-smaller.validator.';
-import { ValidateLength } from 'src/app/length.validator';
+import { ValidateLengthSmaller } from 'src/app/validators/length-smaller.validator.';
+import { ValidateLength } from 'src/app/validators/length.validator';
 import { Component, OnInit, Input, Output, SimpleChanges } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';

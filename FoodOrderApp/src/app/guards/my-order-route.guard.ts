@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-import { OrderService } from './order.service';
+import { OrderService } from '../services/order.service';
 
 @Injectable({ providedIn: 'root' })
 
