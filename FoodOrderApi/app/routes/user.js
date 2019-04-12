@@ -33,7 +33,7 @@ router.post('/login', (req, res) => {
     }
     else {
       res.status(500).send({
-        msg: "Incorrect Username/Password."
+        msg: "Los datos ingresados son incorrectos"
       });
     }
   });

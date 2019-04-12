@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
+import { httpInterceptorProviders } from './interceptors';
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,7 +28,8 @@ import { NativeStorage } from '@ionic-native/native-storage/ngx';
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     NativeStorage,
     LoginService,
-    FingerprintAIO
+    FingerprintAIO,
+    httpInterceptorProviders
   ],
   bootstrap: [AppComponent]
 })

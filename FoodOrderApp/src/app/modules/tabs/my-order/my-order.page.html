@@ -8,14 +8,14 @@
 
 <ion-content>
   <ion-list lines="full" *ngIf="order">
-    <ion-list-header>
+    <ion-list-header color="primary">
       <ion-label>
         <h2>Detalles del pedido</h2>
       </ion-label>
     </ion-list-header>
     <ion-item>
       <ion-thumbnail slot="start" class="edited-thumbnail">
-        <ion-icon class="edited-icon" name="pin"></ion-icon>
+        <ion-icon class="edited-icon" name="pin" color="primary"></ion-icon>
       </ion-thumbnail>
       <ion-label>
         <h3>Ubicación</h3>
@@ -24,7 +24,7 @@
     </ion-item>
     <ion-item>
       <ion-thumbnail slot="start" class="edited-thumbnail">
-        <ion-icon class="edited-icon" name="time"></ion-icon>
+        <ion-icon class="edited-icon" name="time" color="primary"></ion-icon>
       </ion-thumbnail>
       <ion-label>
         <h3>Turno</h3>
@@ -32,28 +32,30 @@
       </ion-label>
     </ion-item>
     <ion-item>
-      <ion-thumbnail slot="start">
+      <ion-avatar slot="start">
         <img src="{{this.order?.menu.img}}">
-      </ion-thumbnail>
+      </ion-avatar>
       <ion-label>
         <h3>Plato principal</h3>
-        <p class="text-no-elipsis">{{this.order?.menu.name}}: {{this.order?.mainCourse.type}} {{this.order?.mainCourse.ingredients.toString()}}</p>
+        <p class="text-no-elipsis">{{this.order?.menu.name}}: {{this.order?.mainCourse.type}}
+          {{this.order?.mainCourse.ingredients.toString()}}</p>
       </ion-label>
     </ion-item>
     <ion-item *ngIf="this.order?.garnish">
-      <ion-thumbnail slot="start">
+      <ion-avatar slot="start">
         <img src="{{this.order?.garnish?.img}}">
-      </ion-thumbnail>
+      </ion-avatar>
       <ion-label>
         <h3>Guarnición</h3>
         <p class="text-no-elipsis" *ngIf="!this.order?.garnish?.isSalad">{{this.order?.garnish?.name}}</p>
-        <p class="text-no-elipsis" *ngIf="this.order?.garnish?.isSalad">{{this.order?.garnish?.name}}: {{this.order?.garnishIngredients.toString()}}</p>
+        <p class="text-no-elipsis" *ngIf="this.order?.garnish?.isSalad">{{this.order?.garnish?.name}}:
+          {{this.order?.garnishIngredients.toString()}}</p>
       </ion-label>
     </ion-item>
     <ion-item *ngIf="this.order?.mainCourse?.special != ''">
-      <ion-thumbnail slot="start">
+      <ion-avatar slot="start">
         <img src="{{this.order?.mainCourse?.specialImg}}">
-      </ion-thumbnail>
+      </ion-avatar>
       <ion-label>
         <h3>Gusto especial</h3>
         <p class="text-no-elipsis">{{this.order?.mainCourse?.special}}</p>

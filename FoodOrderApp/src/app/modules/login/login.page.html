@@ -1,30 +1,39 @@
-<ion-content padding>
-  <form [formGroup]="loginForm" style="height: 98%">
-    <ion-grid style="height: 100%">
-      <ion-row style="height: 100%" justify-content-center>
-        <ion-col align-self-center size-md="6" size-lg="5" size-xs="12" class="login-form">
-          <h1 class="title-form">OrderFood</h1>
-          <div padding>
-            <ion-item class="ion-margin-bottom">
-              <ion-icon name="contact"></ion-icon>
-              <ion-input name="usuario" type="text" placeholder="Usuario" formControlName="username"></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-icon name="lock"></ion-icon>
-              <ion-input name="password" type="password" placeholder="Contraseña" formControlName="password">
-              </ion-input>
-            </ion-item>
-          </div>
-          <div padding  class="login-buttons">
-            <ion-button size="large" type="submit" [disabled]="!loginForm.valid" (click)="loginFingerpint()" expand="block">
-              Ingresar</ion-button>
-            <!-- <ion-icon (click)="loginFingerpint()" name="finger-print" class="login-fingerprint"></ion-icon> -->            
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </form>
-  <p class="footer" style="color: black;">
-    Copyright © 2019. Todos los derechos reservados.
-  </p>
+<ion-content>
+  <div class="back-login">
+  </div>
+  <div class="back-form">
+    <form [formGroup]="loginForm">
+      <div class="login-title">
+        <span class="title-form">
+          <ion-icon name="pizza"></ion-icon>
+          <!-- <ion-icon name="ice-cream"></ion-icon>          
+          <ion-icon name="done-all"></ion-icon>           -->
+        </span>
+        <span class="title-form">
+          <p> FoodApp </p>
+          <!-- <ion-icon name="checkmark-circle-outline"></ion-icon> -->
+        </span>
+      </div>
+      <div class="login-form">
+        <ion-item class="edited-ion-item user-ion-item">
+          <ion-icon name="contact" class="edited-icon"></ion-icon>
+          <ion-input name="usuario" type="text" placeholder="Usuario" formControlName="username"></ion-input>
+        </ion-item>
+        <ion-item class="edited-ion-item pass-ion-item">
+          <ion-icon name="lock" class="edited-icon"></ion-icon>
+          <ion-input name="password" type="password" placeholder="Contraseña" formControlName="password">
+          </ion-input>
+        </ion-item>
+      </div>
+      <div class="login-button-container">
+        <ion-button type="submit" [disabled]="!loginForm.valid" (click)="loginFingerpint()" class="button-login">
+          Ingresar</ion-button>
+      </div>
+    </form>
+  </div>
+  <div class="footer-container">
+    <p class="footer">
+      Copyright © 2019. Todos los derechos reservados.
+    </p>
+  </div>
 </ion-content>

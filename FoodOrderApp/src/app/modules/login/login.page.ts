@@ -55,7 +55,7 @@ export class LoginPage implements OnInit {
     const loginData = {
       username: this.username.value,
       password: this.password.value
-    };
+    };    
     this._loginService.login(loginData).subscribe(res => {
       this._loginService.logUser(res);
     }, err => {

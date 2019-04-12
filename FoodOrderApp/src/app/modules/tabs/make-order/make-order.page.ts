@@ -52,7 +52,23 @@ export class MakeOrderPage {
 
   selectMenu(menu) {
     this.selectedMenu = menu;
-    this.currentStep++;
+    if (!menu.hasGarnish && !menu.isSalad && menu.sauce.length === 0 && menu.type.length === 0) {
+      this.order = {
+        garnish: null,
+        garnishIngredients: [],
+        mainCourse: {
+          ingredients: [],
+          sauce: "",
+          special: "",
+          specialImg: "",
+          type: ""
+        },
+        menu: menu._id
+      };
+      this.currentStep = 3;
+    } else {
+      this.currentStep++;
+    }
   }
 
   orderData(data) {
@@ -83,7 +99,7 @@ export class MakeOrderPage {
 
   createOrder() {
     if (this._orderService.hasOrder()) {
-      this._orderService.updateOrder(this.finalOrder).subscribe(res => {        
+      this._orderService.updateOrder(this.finalOrder).subscribe(res => {
         this._orderService.getOrderByClient(res.user).subscribe(x => {
           this._orderService.setOrderClient(x);
           this.cleanSelection();

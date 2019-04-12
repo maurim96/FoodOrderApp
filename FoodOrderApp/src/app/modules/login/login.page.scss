@@ -1,29 +1,74 @@
-ion-content {
-    --background: #fff url('../../../assets/img/background.jpg') no-repeat center center / cover;
+.logo-img {
+    width: 70%;
+    height: 50%;
+    margin-top: 5%;
 }
-ion-item {
+.back-login {
+    background: var(--ion-color-primary);
+    height: 40%;
+    display: flex;    
+    justify-content: center;
+}
+.back-form {
+    width: 80%;
+    height: 60%;
+    margin: auto;
+    margin-top: -55%;
+}
+.edited-ion-item {
     --background: rgba(0,0,0,0);
-    --border-bottom: 5px solid #1b1b1b;
-    color: #2b2a2a;
+    --border-bottom: 3px solid #1b1b1b;
+    color: black;
 }
-ion-icon {
-    margin-right: 2%;
+.user-ion-item {
+    margin-top: 5%;
+    margin-bottom: 7%;
+}
+.pass-ion-item {
+    margin-top: 7%;
+    margin-bottom: 7%;
+}
+.edited-icon {
+    margin-right: 5%;
     font-size: 30px;
+    color: black;
 }
-ion-button {
-    --background: #363636;
+.title-form {    
+    font-size: 50px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-ion-col {
-    background-color: rgba(255, 255, 255, 0.8705882352941177);
-    border-radius: 25px;
+.title-form p {
+    font-size: 50px;
+    margin: 0;
+    font-family: 'Cookie', cursive;    
+    margin-left: 2%;
 }
-.title-form {
+.login-form {
+    background-color: rgba(255, 255, 255, 1);
+    margin: auto;
+    padding: 1%;
+    margin-top: 3%;
+    box-shadow: 2px 3px 6px 0px black;
+    border-radius: 20px;
+}
+.login-button-container {
     text-align: center;
-    color: rgba(0, 0, 0, 0.75);
+    margin-top: 10%;
 }
-.login-buttons {
-    text-align: center;
+.button-login {    
+    --background: var(--ion-color-primary);    
+    --border-radius: 40px;
+    width: 65%;    
 }
-.login-fingerprint {
-    margin-top: 5%;   
+.footer-container {
+    bottom: 0;
+    position: absolute;    
+    width: 100%;
+    margin: auto;
+}
+.footer {
+    color: black;    
 }
